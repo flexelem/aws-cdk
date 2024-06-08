@@ -98,12 +98,16 @@ export class BucketNotifications extends Construct {
   }
 
   private renderNotificationConfiguration(): NotificationConfiguration {
-    return {
+    const notifConf = {
       EventBridgeConfiguration: this.eventBridgeEnabled ? {} : undefined,
       LambdaFunctionConfigurations: this.lambdaNotifications.length > 0 ? this.lambdaNotifications : undefined,
       QueueConfigurations: this.queueNotifications.length > 0 ? this.queueNotifications : undefined,
       TopicConfigurations: this.topicNotifications.length > 0 ? this.topicNotifications : undefined,
     };
+
+    // eslint-disable-next-line no-console
+    console.log(`NotifConf => ${JSON.stringify(notifConf)}`);
+    return notifConf;
   }
 
   /**
